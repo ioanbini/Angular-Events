@@ -1,1 +1,5 @@
-<p>events-list works!</p>
+<h1>Upcoming Angular Events!</h1>
+<hr>
+<event-thumbnail (eventClick)="handleClickEvent($event)"*ngFor="let event of events" [event]="event"></event-thumbnail>
+
+

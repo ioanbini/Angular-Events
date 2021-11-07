@@ -1,5 +1,4 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { events } from 'src/assets/mockup-events';
 
 @Component({
   selector: 'event-thumbnail',

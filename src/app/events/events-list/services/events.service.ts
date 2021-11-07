@@ -15,4 +15,10 @@ export class EventsService {
 
   }
 
+  getEventsbyId(id:number) {
+    const event = events.find(event => event.id === id);
+    return event;
+
+  }
+
 }

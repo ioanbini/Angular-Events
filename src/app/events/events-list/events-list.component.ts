@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {  ToastrService } from 'ngx-toastr';
 import { EventsService } from './services/events.service';
 
 
@@ -13,7 +14,7 @@ export class EventsListComponent implements OnInit {
   events: any;
 
 
-  constructor(private http: EventsService) { }
+  constructor(private http: EventsService, private toastr:ToastrService) { }
 
   ngOnInit(): void {
     this.showEvents();
@@ -21,6 +22,11 @@ export class EventsListComponent implements OnInit {
 
   showEvents() {
     return this.events = this.http.getEvents();
+  }
+
+  showToastr(eventName:string) {
+    return this.toastr.success(eventName);
+
   }
 
 

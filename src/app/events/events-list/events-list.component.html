@@ -1,5 +1,5 @@
 <h1>Upcoming Angular Events!</h1>
 <hr>
-<event-thumbnail (eventClick)="handleClickEvent($event)"*ngFor="let event of events" [event]="event"></event-thumbnail>
+<event-thumbnail (eventClick)="handleClickEvent($event)" (click)="showToastr(event.name)" *ngFor="let event of events" [event]="event"></event-thumbnail>
 
 

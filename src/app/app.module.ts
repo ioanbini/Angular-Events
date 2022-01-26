@@ -3,17 +3,23 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { EventsAppComponent } from './events-app.component';
-import { EventsListComponent } from './events/events-list/events-list.component';
-import { EventThumbnailComponent } from './events/event-thumbnail/event-thumbnail.component';
+
+/* Summarizes all the imports , hence we have cleaner code */
+import {
+  EventsListComponent,
+  EventThumbnailComponent,
+  EventsService,
+  EventDetailsComponent,
+  EventRouteActivatorService,
+  EventsListResolverService
+  
+} from './events/index';
+
 import { NavbarComponent } from './nav/navbar/navbar.component';
-import { EventsService } from './services/events.service';
-import { EventDetailsComponent } from './events/event-details/event-details.component';
 import { routes } from './routes';
 import { RouterModule } from '@angular/router';
 import { canDeactivate, CreateEventComponent } from './events/create-event/create-event.component';
 import { Error404Component } from './errors/error-page.component';
-import { EventRouteActivatorService } from './services/event-route-activator.service';
-import { EventsListResolverService } from './services/events-list-resolver.service';
 
 
 @NgModule({
@@ -24,7 +30,7 @@ import { EventsListResolverService } from './services/events-list-resolver.servi
     NavbarComponent,
     EventDetailsComponent,
     CreateEventComponent,
-    Error404Component
+    Error404Component,
   ],
   imports: [
 
@@ -41,6 +47,7 @@ import { EventsListResolverService } from './services/events-list-resolver.servi
     {
       provide: 'canDeactivate',
       useValue: canDeactivate
+      //we provide (reference) the string canDeactivate and we are using the function canDeactivate as useValue
     }
   ],
   bootstrap: [EventsAppComponent]

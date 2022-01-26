@@ -1,1 +1,10 @@
-<p>events-list works!</p>
+<h1>Upcoming Angular Events!</h1>
+<hr>
+<event-thumbnail (eventClick)="handleClickEvent($event)" (click)="showToastr(event.name)" *ngFor="let event of events" TrackBy="event.id" [event]="event"></event-thumbnail>
+<!-- In order to communicate with parent component from child ,we should use the @output() decorator and create an eventEmmiter
+in child component then in parent componet we will make the parent
+to listen to the event everytime the event is emmited from the child component! we can achive this by using in the child selector the output property (eventClick)
+and everytime our eventClick emmits an event
+we will make it execute a handleClickEvent method which exists in the parent component in our care events-list ! This method will perform an action everytime the
+event from the child component is emmited ! This is binding to the event of the child  -->
+<!-- $event -> data which they emmited from our child component -->

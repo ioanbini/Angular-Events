@@ -1,15 +1,19 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
 import { EventsAppComponent } from './events-app.component';
 import { EventsListComponent } from './events/events-list/events-list.component';
-import { EventThumbnailComponent } from './events/events-list/event-thumbnail/event-thumbnail/event-thumbnail.component';
+import { EventThumbnailComponent } from './events/event-thumbnail/event-thumbnail.component';
 import { NavbarComponent } from './nav/navbar/navbar.component';
-import { EventsService } from './events/events-list/services/events.service';
-import { ToastrModule } from 'ngx-toastr';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { EventDetailsComponent } from './events/events-list/event-details/event-details.component';
+import { EventsService } from './services/events.service';
+import { EventDetailsComponent } from './events/event-details/event-details.component';
 import { routes } from './routes';
 import { RouterModule } from '@angular/router';
+import { canDeactivate, CreateEventComponent } from './events/create-event/create-event.component';
+import { Error404Component } from './errors/error-page.component';
+import { EventRouteActivatorService } from './services/event-route-activator.service';
+import { EventsListResolverService } from './services/events-list-resolver.service';
 
 
 @NgModule({
@@ -18,7 +22,9 @@ import { RouterModule } from '@angular/router';
     EventsListComponent,
     EventThumbnailComponent,
     NavbarComponent,
-    EventDetailsComponent
+    EventDetailsComponent,
+    CreateEventComponent,
+    Error404Component
   ],
   imports: [
 
@@ -30,6 +36,12 @@ import { RouterModule } from '@angular/router';
   ],
   providers: [
     EventsService,
+    EventsListResolverService,
+    EventRouteActivatorService,
+    {
+      provide: 'canDeactivate',
+      useValue: canDeactivate
+    }
   ],
   bootstrap: [EventsAppComponent]
 })

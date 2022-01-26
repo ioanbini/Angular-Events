@@ -7,9 +7,11 @@
     <div class="collapse navbar-collapse">
       <ul class="nav navbar-nav">
         <li>
-          <a >All Events</a>
+          <a [routerLink]="['/events']" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" >All Events</a>
+          <!-- routerLinkActive="active" will give the class active when we are in the all events page but with [routerLinkActiveOptions]="{exact: true}" when
+          the path is absolute '/events' -->
         </li>
-        <li><a href="">Create Event</a></li>
+        <li><a [routerLink]="['events/create']" routerLinkActive="active">Create Event</a></li>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" >
             Events

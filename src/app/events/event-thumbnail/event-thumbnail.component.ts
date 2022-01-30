@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Events } from '../event.model';
 
 @Component({
   selector: 'event-thumbnail',
@@ -6,7 +7,7 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
   styleUrls: ['./event-thumbnail.component.scss']
 })
 export class EventThumbnailComponent implements OnInit {
-  @Input() event: any;
+  @Input() event: Events|undefined;
   @Output() eventClick = new EventEmitter()  /*eventClick => is an event Emitter */
 
   constructor() { }

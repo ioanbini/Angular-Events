@@ -1,8 +1,8 @@
-<div [routerLink]="['/events' ,event.id]" class="well hoverwell thumbnail">
+<div [routerLink]="['/events' ,event?.id]" class="well hoverwell thumbnail">
   <!-- routerlink will navigates us to the event with the corresponding id , takes it as a parameter
   actually its an array which includes URL segments allong with URL parameters , its like building the URL e.g /events/5 -->
   <h2>{{event?.name}}</h2>
-  <p>Date:{{event?.date}}</p>
+  <p>Date:{{event?.date|date}}</p>
   <div [ngSwitch]="event?.time">Time:{{event?.time}}
     <span *ngSwitchCase="'8:00 am'">(Early Start)</span>
     <span *ngSwitchCase="'10:00 am'">(Late Start)</span>
@@ -14,7 +14,7 @@
     <span>&nbsp;</span>
     <span>{{event?.location?.city}}, {{event?.location?.country}}</span>
   </div>
-  <button class="btn btn-primary" (click)="handleClickMe(event)">Click Me!</button>
+  <button class="btn btn-primary" (click)="handleClickMe(event)">Details</button>
 
 </div>
 

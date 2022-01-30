@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { events } from 'src/assets/mockup-events';
-import { Subject } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
+import { Events } from '../events/event.model';
 
 @Injectable({
   providedIn: 'root'
@@ -10,8 +11,9 @@ export class EventsService {
   constructor() { }
 
 
-  getEvents() {
-    const subject = new Subject() //create a new Subject() observable
+  getEvents() :Observable<Events[]>{ //returns an observable which contains type of events array
+    const subject = new Subject<Events[]>()  //create a new Subject() observable which is a generic so will define its type
+    //to contain type of Events array
 
     /*setTimeout method to make it act like they data come asynchronously */
     setTimeout(() => {

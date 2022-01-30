@@ -1,34 +1,27 @@
 export interface Events {
   id: number,
   name: string,
-  date: string,
+  date: Date,
   time: string,
   price: number,
   imageUrl: string,
-  location:Locations
+  location?: { //? means that maybe this property is null, but when it's not null we need all of it's fields
+    address: string,
+    city: string,
+    country:string
+
+  }
+  onlineUrl?: string
+  sessions:ISessions[]
 
 }
 
-interface Locations extends Events {
-  address: string,
-  city: string,
-  country:string
-
+export interface ISessions{
+  id: number,
+  name: string,
+  presenter: string,
+  duration: number,
+  level: string,
+  abstract: string,
+  voters:string[]
 }
-
-//TODO  create sessions interface
-/*
-sessions: [
-      {
-        id: 1,
-        name: "Using Angular 4 Pipes",
-        presenter: "Peter Bacon Darwin",
-        duration: 1,
-        level: "Intermediate",
-        abstract: `Learn all about the new pipes in Angular 4, both
-        how to write them, and how to get the new AI CLI to write
-        them for you. Given by the famous PBD, president of Angular
-        University (formerly Oxford University)`,
-        voters: ['bradgreen', 'igorminar', 'martinfowler']
-      },
-*/

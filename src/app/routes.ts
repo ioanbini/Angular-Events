@@ -24,7 +24,7 @@ export const routes :Routes  = [
   //redirect to /events and the path is full , wich means absolute path with only events keyword
 
   /* In order to load the lazy loaded module we are using the loadChidren property ,then we are using  DYNAMIC IMPORT ! So we set it to a function and in that func we will
-  use dynamic inport to load UserModule (our lazy loaded module). The Dynamic Import will return a promise that contains the module to be imported and also the class that
+  use dynamic import to load UserModule (our lazy loaded module). The Dynamic Import will return a promise that contains the module to be imported and also the class that
   this module does export and we need to import , in our case the UserModule class
 
 

@@ -11,8 +11,9 @@ import {
   EventsService,
   EventDetailsComponent,
   EventRouteActivatorService,
-  EventsListResolverService
-  
+  EventsListResolverService,
+  UserAuthService
+
 } from './events/index';
 
 import { NavbarComponent } from './nav/navbar/navbar.component';
@@ -31,6 +32,7 @@ import { Error404Component } from './errors/error-page.component';
     EventDetailsComponent,
     CreateEventComponent,
     Error404Component,
+
   ],
   imports: [
 
@@ -42,6 +44,7 @@ import { Error404Component } from './errors/error-page.component';
   ],
   providers: [
     EventsService,
+    UserAuthService,
     EventsListResolverService,
     EventRouteActivatorService,
     {

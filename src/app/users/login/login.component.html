@@ -1,0 +1,22 @@
+<h1>Login</h1>
+<hr>
+<div class="col-md-4">
+  <!-- #loginForm="ngForm" : #loginForm is a  local variable to access the data of the form ,via a submit handler -->
+  <!-- and we bind to the submit event with ngSubmit directive -->
+  <form #loginForm="ngForm" (ngSubmit)="login(loginForm.value)" autocomplete="off">
+    <div class="form-group">
+      <label for="userName">User Name:</label>
+      <!-- we are using 1 way binding from html to component (ts ) -->
+      <!-- ngModel requires a name attribute which is a name for the field -->
+      <input  (ngModel)="userName" id="userName" name="userName" type="text" class="form-control" placeholder="User Name..." />
+    </div>
+    <div class="form-group">
+      <label for="password">Password:</label>
+      <!-- [(ngModel)] : 2 way binding (banana in a box syntax) from ts to template and from template to ts (bidirectional) -->
+      <input (ngModel)="password" id="password" name="password" type="password" class="form-control" placeholder="Password..." />
+    </div>
+
+    <button  type="submit" class="btn btn-primary">Login</button>
+    <button type="button" class="btn btn-default">Cancel</button>
+  </form>
+</div>

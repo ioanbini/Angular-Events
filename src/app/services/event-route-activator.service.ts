@@ -10,7 +10,7 @@ export class EventRouteActivatorService implements CanActivate {
 
  /* this method is a built in method of the CanActivate interface , here it takes one param (route ) and returns boolean !  */
   canActivate(route: ActivatedRouteSnapshot):boolean {
-    const eventExists = !!this.eventService.getEventsbyId(+route.params['id']) //we grab the id from the URL 
+    const eventExists = !!this.eventService.getEventsbyId(+route.params['id']) //we grab the id from the URL
 
     /* in line 13 we check if the eventExists  otherwise if the id is valid , the method returns :boolean !
      we invoke the getEventsbyId method from our service and we pass a parameter of the id and with the + we make it as a number !

@@ -8,13 +8,13 @@ import { UserAuthService } from 'src/app/services';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor(public authService:UserAuthService) { }
+  constructor(public authService: UserAuthService) { }
 
   ngOnInit(): void {
 
   }
 
-  isUserAuthenticated() :boolean {
+  isUserAuthenticated(): boolean {
     const isUserAuth = this.authService.isAuthenticated()
     if (!isUserAuth) {
       return isUserAuth;
@@ -22,5 +22,4 @@ export class NavbarComponent implements OnInit {
     return isUserAuth;
 
   }
-
 }

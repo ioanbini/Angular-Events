@@ -10,6 +10,7 @@ import { UserAuthService } from 'src/app/services';
 export class LoginComponent implements OnInit {
   userName: any;
   password: any;
+  mouseOverLogin!:boolean
 
   constructor(private userAuth:UserAuthService,private router:Router) { }
 

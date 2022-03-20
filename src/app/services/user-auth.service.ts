@@ -1,3 +1,5 @@
+import { first } from 'rxjs/operators';
+import { Form } from '@angular/forms';
 import { Injectable } from '@angular/core';
 import { throwError } from 'rxjs';
 import { User } from '../users/user.model';
@@ -7,7 +9,7 @@ import { User } from '../users/user.model';
 })
 export class UserAuthService {
 
-  currentUser: User|any;
+  currentUser: User | any;
 
   constructor() { }
 
@@ -18,7 +20,7 @@ export class UserAuthService {
     this.currentUser = {
       id: 1,
       firstName: 'John',
-      lastName:'Papa',
+      lastName: 'Papa',
       userName: userName,
       password: password
 
@@ -31,6 +33,12 @@ export class UserAuthService {
   isAuthenticated(): boolean {
 
     return !!this.currentUser;
+
+  }
+
+  updateCurrentUser(firstName: string, lastName: string) {
+    this.currentUser.firstName = firstName;
+    this.currentUser.lastName = lastName;
 
   }
 }

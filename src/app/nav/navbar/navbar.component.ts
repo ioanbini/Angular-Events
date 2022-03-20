@@ -15,7 +15,7 @@ export class NavbarComponent implements OnInit {
   }
 
   isUserAuthenticated(): boolean {
-    const isUserAuth = this.authService.isAuthenticated()
+    const isUserAuth = this.authService.isAuthenticated();
     if (!isUserAuth) {
       return isUserAuth;
     }

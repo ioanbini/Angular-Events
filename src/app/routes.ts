@@ -4,7 +4,8 @@ import {
   CreateEventComponent,
   EventDetailsComponent,
   EventRouteActivatorService,
-  EventsListResolverService
+  EventsListResolverService,
+  CreateSessionComponent
 
 } from './events/index';
 import { Error404Component } from './errors/error-page.component';
@@ -22,6 +23,7 @@ export const routes :Routes  = [
   /*for can Activate we can use a function or a service , here we are using service , because it gives us flexibillity and the ability to inject other services */
   { path: '', redirectTo: '/events', pathMatch: 'full' } ,// if the path is empty or the user is in the root of our site
   //redirect to /events and the path is full , wich means absolute path with only events keyword
+  { path: 'events/session/new' , component:CreateSessionComponent},
 
   /* In order to load the lazy loaded module we are using the loadChidren property ,then we are using  DYNAMIC IMPORT ! So we set it to a function and in that func we will
   use dynamic import to load UserModule (our lazy loaded module). The Dynamic Import will return a promise that contains the module to be imported and also the class that

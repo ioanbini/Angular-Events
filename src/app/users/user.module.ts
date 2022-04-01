@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
@@ -25,7 +25,8 @@ import { UserRoutes } from './user-routes';
     /*also instead of forRoot here we are using RouterModule.forChild because its lazy loaded
       */
     RouterModule.forChild(UserRoutes),
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
 
   ],
   exports: [],

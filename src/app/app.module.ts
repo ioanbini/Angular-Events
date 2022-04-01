@@ -1,3 +1,4 @@
+import { ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -12,7 +13,8 @@ import {
   EventDetailsComponent,
   EventRouteActivatorService,
   EventsListResolverService,
-  UserAuthService
+  UserAuthService,
+  CreateSessionComponent
 
 } from './events/index';
 
@@ -32,6 +34,7 @@ import { Error404Component } from './errors/error-page.component';
     EventDetailsComponent,
     CreateEventComponent,
     Error404Component,
+    CreateSessionComponent,
 
   ],
   imports: [
@@ -39,7 +42,8 @@ import { Error404Component } from './errors/error-page.component';
     BrowserModule,
     RouterModule.forRoot(routes),
     ToastrModule.forRoot(),
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    ReactiveFormsModule
 
   ],
   providers: [

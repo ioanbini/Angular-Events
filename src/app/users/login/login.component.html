@@ -8,15 +8,18 @@
       <label for="userName">User Name:</label>
       <!-- we are using 1 way binding from html to component (ts ) -->
       <!-- ngModel requires a name attribute which is a name for the field -->
-      <input  (ngModel)="userName" id="userName" name="userName" type="text" class="form-control" placeholder="User Name..." />
+      <input  (ngModel)="userName" id="userName" name="userName" type="text" class="form-control" placeholder="User Name..."  required />
+      <em *ngIf="loginForm.controls.userName?.invalid && (loginForm.controls.userName?.touched || mouseOverLogin)">Username required...</em>
     </div>
     <div class="form-group">
       <label for="password">Password:</label>
       <!-- [(ngModel)] : 2 way binding (banana in a box syntax) from ts to template and from template to ts (bidirectional) -->
-      <input (ngModel)="password" id="password" name="password" type="password" class="form-control" placeholder="Password..." />
+      <input (ngModel)="password" id="password" name="password" type="password" class="form-control" placeholder="Password..." required />
+      <em *ngIf="loginForm.controls.password?.invalid && (loginForm.controls.password?.touched || mouseOverLogin)">Password required...</em>
     </div>
-
-    <button  type="submit" class="btn btn-primary">Login</button>
-    <button type="button" class="btn btn-default">Cancel</button>
+    <div (mouseenter)="mouseOverLogin=true" (mouseleave)="mouseOverLogin=false">
+      <button  type="submit" [disabled]="loginForm.invalid" class="btn btn-primary">Login</button>
+      <button type="button" class="btn btn-default">Cancel</button>
+    </div>
   </form>
 </div>

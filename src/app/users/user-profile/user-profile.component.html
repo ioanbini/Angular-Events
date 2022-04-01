@@ -2,18 +2,25 @@
   <h1>Edit Your Profile </h1>
   <hr>
   <div class="col-md-4">
-    <form autocomplete="off" novalidate>
-      <div class="form-group">
+    <!-- [formGroup]="profileForm" to wire up the form with the template -->
+    <form [formGroup]="profileForm" (ngSubmit)="saveProfile(profileForm.value)" autocomplete="off" novalidate>
+      <div class="form-group" [ngClass]="{'error':firstNameValidation()}">
         <label for="firstName">First Name:</label>
-        <input id="firstName" type="text" class="form-control" placeholder="First Name..." />
+        <!-- formControlName="firstName" to wire form's controls with the corresponding input fields -->
+        <input formControlName="firstName"  id="firstName" type="text" class="form-control" placeholder="First Name..." />
+        <em *ngIf="firstNameValidation() && this.profileForm.controls?.firstName?.errors?.required">Required</em>
+        <em *ngIf="firstNameValidation() && this.profileForm.controls.firstName?.errors?.pattern">Must start with a letter</em>
       </div>
-      <div class="form-group">
+      <div class="form-group" [ngClass]="{'error':lastNameValidation()}">
         <label for="lastName">Last Name:</label>
-        <input id="lastName" type="text" class="form-control" placeholder="Last Name..." />
+        <input formControlName="lastName"  id="lastName" type="text" class="form-control" placeholder="Last Name..." />
+        <em *ngIf="lastNameValidation() && this.lastName?.errors?.required">Required</em>
+        <em *ngIf="lastNameValidation() && this.profileForm.controls.lastName?.errors?.pattern">Must start with a letter</em>
+
       </div>
 
       <button type="submit" class="btn btn-primary">Save</button>
-      <button type="button" class="btn btn-default">Cancel</button>
+      <button type="button" (click)="cancel()" class="btn btn-default">Cancel</button>
     </form>
   </div>
 </div>

@@ -31,3 +31,31 @@ button {
 .toast-warning {
   background-color: #f89406;
 }
+
+
+em {
+  float: right;
+  color: #E05C65;
+  padding-left: 10px
+}
+
+.error {
+  input ,
+  select,
+  textarea {
+      background-color: #E3C3C5;
+  }
+}
+
+.error {
+
+  ::-webkit-input-placeholder,
+  :-moz-placeholder,
+  ::-moz-placeholder,
+  :-ms-input-placeholder {
+    color: #999;
+  }
+}
+
+
+

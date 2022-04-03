@@ -34,7 +34,6 @@ export const routes :Routes  = [
 
   {
     path: 'user',
-    loadChildren: () => import('./users/user.module')
-      .then(module => module.UserModule)
+    loadChildren: () => import('./users/user.module').then(module => module.UserModule)
   }
 ]

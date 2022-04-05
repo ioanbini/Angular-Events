@@ -32,4 +32,16 @@ export class EventsService {
 
   }
 
+  saveEvent(event:Events) {
+    event.id= 999
+    event.sessions = []
+    events.push(event)
+  }
+
+  updateEvent(newEvent:Events) {
+    /** here we need to find the existing event in the events array and replace it for now   */
+    let index = events.findIndex(event => event.id == newEvent.id)
+    events[index] = newEvent;
+  }
+
 }

@@ -12,11 +12,11 @@ export interface Events {
 
   }
   onlineUrl?: string
-  sessions:iSessions[]
+  sessions:iSession[]
 
 }
 
-export interface iSessions{
+export interface iSession{
   id: number|undefined,
   name: string,
   presenter: string,

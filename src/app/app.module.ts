@@ -23,6 +23,7 @@ import { routes } from './routes';
 import { RouterModule } from '@angular/router';
 import { canDeactivate, CreateEventComponent } from './events/create-event/create-event.component';
 import { Error404Component } from './errors/error-page.component';
+import { SessionListComponent } from './events/event-details/session-list/session-list.component';
 
 
 @NgModule({
@@ -35,6 +36,7 @@ import { Error404Component } from './errors/error-page.component';
     CreateEventComponent,
     Error404Component,
     CreateSessionComponent,
+    SessionListComponent,
 
   ],
   imports: [

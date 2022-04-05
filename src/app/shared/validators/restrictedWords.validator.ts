@@ -1,11 +1,11 @@
-import { FormControl } from "@angular/forms"
+import { AbstractControl } from "@angular/forms"
   /**Prevents certain words from being used in a field */
   /*Validator is basically just a function that returns null if the control is valid or an error object if the control is invalid */
 
   export function restrictedWords(words: string[]) {
     /** The restrictedWords function is a function that returns an arrow function wicth returns a js object which has a property of type string and a value of type any and in our case string or null as any!
      in our case the restrictedWords functions returns our validator*/
-    return (control: FormControl): { [key: string]: any } => {
+    return (control: AbstractControl): { [key: string]: any } => {
       /* if there are no words passed in will return null and the control will be vaild  */
       if (!words)
         return null as any

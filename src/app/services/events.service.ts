@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { events } from 'src/assets/mockup-events';
 import { Observable, Subject } from 'rxjs';
+import { events } from 'src/assets/mockup-events';
 import { Events } from '../events/event.model';
 
 @Injectable({
@@ -32,8 +32,8 @@ export class EventsService {
 
   }
 
-  saveEvent(event:Events) {
-    event.id= 999
+  saveEvent(event: Events) {
+    event.id = 999
     event.sessions = []
     events.push(event)
   }

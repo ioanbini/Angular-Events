@@ -55,6 +55,7 @@ export class CreateSessionComponent implements OnInit {
       voters: []
     }
     this.saveNewSession.emit(iSession)
+    //the event that will emited it is actually our session object
 
   }
 

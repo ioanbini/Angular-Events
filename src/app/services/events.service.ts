@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { events } from 'src/assets/mockup-events';
 import { Observable, Subject } from 'rxjs';
+import { events } from 'src/assets/mockup-events';
 import { Events } from '../events/event.model';
 
 @Injectable({
@@ -30,6 +30,18 @@ export class EventsService {
     const event = events.find(event => event.id === id);
     return event;
 
+  }
+
+  saveEvent(event: Events) {
+    event.id = 999
+    event.sessions = []
+    events.push(event)
+  }
+
+  updateEvent(newEvent:Events) {
+    /** here we need to find the existing event in the events array and replace it for now   */
+    let index = events.findIndex(event => event.id == newEvent.id)
+    events[index] = newEvent;
   }
 
 }

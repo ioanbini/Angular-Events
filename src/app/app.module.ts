@@ -1,4 +1,4 @@
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -23,6 +23,8 @@ import { routes } from './routes';
 import { RouterModule } from '@angular/router';
 import { canDeactivate, CreateEventComponent } from './events/create-event/create-event.component';
 import { Error404Component } from './errors/error-page.component';
+import { SessionListComponent } from './events/event-details/session-list/session-list.component';
+import { CollapsibleWellComponent } from './shared/components/collapsible-well/collapsible-well.component';
 
 
 @NgModule({
@@ -35,6 +37,8 @@ import { Error404Component } from './errors/error-page.component';
     CreateEventComponent,
     Error404Component,
     CreateSessionComponent,
+    SessionListComponent,
+    CollapsibleWellComponent,
 
   ],
   imports: [
@@ -43,7 +47,9 @@ import { Error404Component } from './errors/error-page.component';
     RouterModule.forRoot(routes),
     ToastrModule.forRoot(),
     BrowserAnimationsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    FormsModule
+
 
   ],
   providers: [

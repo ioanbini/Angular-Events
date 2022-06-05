@@ -8,10 +8,6 @@ import { UserRoutes } from './user-routes';
 
 /* This is a basic lazy loaded Module */
 
-
-
-
-
 @NgModule({
   declarations: [
     UserProfileComponent,
@@ -32,4 +28,5 @@ import { UserRoutes } from './user-routes';
   exports: [],
   providers: [],
 })
-export class UserModule {}
+export class UserModule {
+}

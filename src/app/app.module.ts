@@ -1,3 +1,4 @@
+import { TOASTR_TOKEN, Toastr } from './../shared-functioanallity-lib/services/toastr.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
@@ -26,7 +27,7 @@ import { Error404Component } from './errors/error-page.component';
 import { SessionListComponent } from './events/event-details/session-list/session-list.component';
 import { CollapsibleWellComponent } from './shared/components/collapsible-well/collapsible-well.component';
 
-
+declare let toastr:Toastr
 @NgModule({
   declarations: [
     EventsAppComponent,
@@ -56,7 +57,12 @@ import { CollapsibleWellComponent } from './shared/components/collapsible-well/c
     EventsService,
     UserAuthService,
     EventsListResolverService,
+    //sorthand for { provide:EventsListResolverService , useClass:EventsListResolverService}
     EventRouteActivatorService,
+    {
+      provide:TOASTR_TOKEN,
+      useValue: toastr
+    },
     {
       provide: 'canDeactivate',
       useValue: canDeactivate

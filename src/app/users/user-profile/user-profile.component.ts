@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { TOASTR_TOKEN, Toastr } from './../../../shared-functioanallity-lib/services/toastr.service';
+import { ToastrService } from 'ngx-toastr';
+import { Component, Inject, OnInit } from '@angular/core';
 import { Form, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserAuthService } from '../../services/user-auth.service';
@@ -14,7 +16,12 @@ export class UserProfileComponent implements OnInit {
   lastName: FormControl;
   firstName: FormControl;
 
-  constructor(private authService: UserAuthService, private router: Router) {
+  constructor(private authService: UserAuthService,
+    @Inject(TOASTR_TOKEN) private toastr:Toastr,
+    /*tells angular that for this toastr var that we are creating , that is going to be a private member of this class,
+    your are going to get your value bu using the TOASTR_TOKEN to look up the service in the DI registry.
+    */
+     private router: Router) {
     this.firstName = new FormControl(this.authService.currentUser.firstName, [Validators.required ,Validators.pattern('[a-zA-z].*')]);
     this.lastName = new FormControl(this.authService.currentUser.lastName, [Validators.required ,Validators.pattern('[a-zA-z].*')]);
   }
@@ -40,7 +47,8 @@ export class UserProfileComponent implements OnInit {
   saveProfile(formValues: any): void {
     if (this.profileForm.valid) {
       this.authService.updateCurrentUser(formValues.firstName, formValues.lastName);
-      this.router.navigate(['events'])
+      this.toastr.success('The user successfully updated!')
+      //this.router.navigate(['events'])
     }
 
   }

@@ -12,9 +12,11 @@ import { Events, iSession } from "../event.model";
 export class EventDetailsComponent implements OnInit {
   event: Events | undefined;
   addMode!: boolean;
-  constructor(private eventService: EventsService, private route: ActivatedRoute) {
+  filterBy: string = 'all';
+  sortBy:string = 'votes'
 
-  }
+
+  constructor(private eventService: EventsService, private route: ActivatedRoute) {}
 
   ngOnInit(): void {
 

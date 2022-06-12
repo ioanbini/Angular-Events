@@ -12,9 +12,10 @@ import { iSession } from './../../events/event.model';
 export class NavbarComponent implements OnInit {
 
   searchTerm: string = '';
-  foundSessions: iSession[] = [];
+  foundSessions: iSession[] |any = [];
 
-  constructor(public authService: UserAuthService, private eventsService: EventsService) { }
+  constructor(public authService: UserAuthService, private eventsService: EventsService) { 
+  }
 
   ngOnInit(): void {
 
@@ -34,7 +35,6 @@ export class NavbarComponent implements OnInit {
     this.eventsService.searchSessions(searchTerm)
       .subscribe(sessions => {
         this.foundSessions = sessions;
-        console.log(this.foundSessions)
       });
   }
 }

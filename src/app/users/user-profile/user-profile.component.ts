@@ -1,11 +1,10 @@
-import { ToastrService } from 'ngx-toastr';
-import { TOASTR_TOKEN, Toastr } from './../../../shared-functioanallity-lib/services/toastr.service';
-import { Component, Inject, OnInit } from '@angular/core';
-import {  FormControl, FormGroup, Validators } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { UserAuthService } from '../../services/user-auth.service';
 
-let toastr:Toastr
+
 @Component({
   selector: 'app-user-profile',
   templateUrl: './user-profile.component.html',
@@ -22,10 +21,10 @@ export class UserProfileComponent implements OnInit {
     /*tells angular that for this toastr var that we are creating , that is going to be a private member of this class,
     your are going to get your value bu using the TOASTR_TOKEN to look up the service in the DI registry.
     */
-    private toastrService:ToastrService,
+    private toastrService: ToastrService,
     private router: Router) {
-    this.firstName = new FormControl(this.authService.currentUser.firstName, [Validators.required ,Validators.pattern('[a-zA-z].*')]);
-    this.lastName = new FormControl(this.authService.currentUser.lastName, [Validators.required ,Validators.pattern('[a-zA-z].*')]);
+    this.firstName = new FormControl(this.authService.currentUser.firstName, [Validators.required, Validators.pattern('[a-zA-z].*')]);
+    this.lastName = new FormControl(this.authService.currentUser.lastName, [Validators.required, Validators.pattern('[a-zA-z].*')]);
   }
 
   ngOnInit(): void {
@@ -36,8 +35,8 @@ export class UserProfileComponent implements OnInit {
     })
 
   }
-  lastNameValidation() :boolean {
-   return this.lastName.invalid && this.lastName.touched
+  lastNameValidation(): boolean {
+    return this.lastName.invalid && this.lastName.touched
   }
 
   firstNameValidation(): boolean {

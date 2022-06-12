@@ -48,18 +48,28 @@ export class EventsService {
     searchTerm.toLocaleLowerCase();
     let results: iSession [] = [];
 
-
+// we are looking through each of our events 
     events.forEach(event => {
+      // and we grab a list of maching sessions from each event with filter , if thery are exist 
       let matchingSessions = event.sessions.filter(session => {
+        //filter down to a new list whre the session's name contains the search term we are looking for .indexOf() >-1 ;
         return session.name.toLocaleLowerCase().indexOf(searchTerm) > -1 ; //??
       })
+
+      // now because the sessions do not contain the event id that they belong to ,
+      // we are going to add to every maching session the corresponding event id 
       matchingSessions= matchingSessions.map((session:any)=> {
         session.eventId = event.id;
-        return session  // ?? 
+        // and now we will return that session
+        return session 
       })
-       results = results.concat(matchingSessions) //??
-    })
 
+      // now we going to take the empty results array and we are going to add to it the matchingSessions using the concat() with the corresponding 
+      //event id that we assigned on the line 61
+       results = results.concat(matchingSessions) 
+    })
+// now we will create an observable and will return it ! basically an event emmiter that will emit our data 
+//and we will use the setTimeout to immitate the web request
     let emmiter = new EventEmitter(true);
     setTimeout(() => {
       emmiter.emit(results);

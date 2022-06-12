@@ -4,6 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
 import { ToastrModule } from 'ngx-toastr';
+import { CollapsibleWellComponent, SimpleModalComponent } from '../shared-functioanallity-lib';
 import { Error404Component } from './errors/error-page.component';
 import { EventsAppComponent } from './events-app.component';
 import { canDeactivate, CreateEventComponent } from './events/create-event/create-event.component';
@@ -15,8 +16,7 @@ import {
 } from './events/index';
 import { NavbarComponent } from './nav/navbar/navbar.component';
 import { routes } from './routes';
-import { CollapsibleWellComponent } from './shared/components/collapsible-well/collapsible-well.component';
-
+import { ModalTriggerDirective } from './shared/index';
 
 
 
@@ -32,6 +32,8 @@ import { CollapsibleWellComponent } from './shared/components/collapsible-well/c
     CreateSessionComponent,
     SessionListComponent,
     CollapsibleWellComponent,
+    SimpleModalComponent,
+    ModalTriggerDirective
 
   ],
   imports: [

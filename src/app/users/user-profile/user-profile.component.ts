@@ -1,12 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { Form, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { UserAuthService } from '../../services/user-auth.service';
+
 
 @Component({
   selector: 'app-user-profile',
   templateUrl: './user-profile.component.html',
-  styleUrls: ['./user-profile.component.scss']
+  styleUrls: ['./user-profile.component.scss'],
 })
 export class UserProfileComponent implements OnInit {
 
@@ -14,9 +16,15 @@ export class UserProfileComponent implements OnInit {
   lastName: FormControl;
   firstName: FormControl;
 
-  constructor(private authService: UserAuthService, private router: Router) {
-    this.firstName = new FormControl(this.authService.currentUser.firstName, [Validators.required ,Validators.pattern('[a-zA-z].*')]);
-    this.lastName = new FormControl(this.authService.currentUser.lastName, [Validators.required ,Validators.pattern('[a-zA-z].*')]);
+  constructor(private authService: UserAuthService,
+    // @Inject(TOASTR_TOKEN) private toastr:Toastr,
+    /*tells angular that for this toastr var that we are creating , that is going to be a private member of this class,
+    your are going to get your value bu using the TOASTR_TOKEN to look up the service in the DI registry.
+    */
+    private toastrService: ToastrService,
+    private router: Router) {
+    this.firstName = new FormControl(this.authService.currentUser.firstName, [Validators.required, Validators.pattern('[a-zA-z].*')]);
+    this.lastName = new FormControl(this.authService.currentUser.lastName, [Validators.required, Validators.pattern('[a-zA-z].*')]);
   }
 
   ngOnInit(): void {
@@ -27,8 +35,8 @@ export class UserProfileComponent implements OnInit {
     })
 
   }
-  lastNameValidation() :boolean {
-   return this.lastName.invalid && this.lastName.touched
+  lastNameValidation(): boolean {
+    return this.lastName.invalid && this.lastName.touched
   }
 
   firstNameValidation(): boolean {
@@ -40,7 +48,9 @@ export class UserProfileComponent implements OnInit {
   saveProfile(formValues: any): void {
     if (this.profileForm.valid) {
       this.authService.updateCurrentUser(formValues.firstName, formValues.lastName);
-      this.router.navigate(['events'])
+      //this.toastr.success('The user successfully updated!')
+      this.toastrService.success('The user successfully updated!')
+      //this.router.navigate(['events'])
     }
 
   }

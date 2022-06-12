@@ -1,30 +1,23 @@
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RouterModule } from '@angular/router';
 import { ToastrModule } from 'ngx-toastr';
+import { CollapsibleWellComponent, SimpleModalComponent } from '../shared-functioanallity-lib';
+import { Error404Component } from './errors/error-page.component';
 import { EventsAppComponent } from './events-app.component';
-
+import { canDeactivate, CreateEventComponent } from './events/create-event/create-event.component';
+import { SessionListComponent } from './events/event-details/session-list/session-list.component';
 /* Summarizes all the imports , hence we have cleaner code */
 import {
-  EventsListComponent,
-  EventThumbnailComponent,
-  EventsService,
-  EventDetailsComponent,
-  EventRouteActivatorService,
-  EventsListResolverService,
-  UserAuthService,
-  CreateSessionComponent
-
+  CreateSessionComponent, EventDetailsComponent,
+  EventRouteActivatorService, EventsListComponent, EventsListResolverService, EventsService, EventThumbnailComponent, UserAuthService
 } from './events/index';
-
 import { NavbarComponent } from './nav/navbar/navbar.component';
 import { routes } from './routes';
-import { RouterModule } from '@angular/router';
-import { canDeactivate, CreateEventComponent } from './events/create-event/create-event.component';
-import { Error404Component } from './errors/error-page.component';
-import { SessionListComponent } from './events/event-details/session-list/session-list.component';
-import { CollapsibleWellComponent } from './shared/components/collapsible-well/collapsible-well.component';
+import { ModalTriggerDirective } from './shared/index';
+
 
 
 @NgModule({
@@ -39,6 +32,8 @@ import { CollapsibleWellComponent } from './shared/components/collapsible-well/c
     CreateSessionComponent,
     SessionListComponent,
     CollapsibleWellComponent,
+    SimpleModalComponent,
+    ModalTriggerDirective
 
   ],
   imports: [
@@ -56,6 +51,7 @@ import { CollapsibleWellComponent } from './shared/components/collapsible-well/c
     EventsService,
     UserAuthService,
     EventsListResolverService,
+    //sorthand for { provide:EventsListResolverService , useClass:EventsListResolverService}
     EventRouteActivatorService,
     {
       provide: 'canDeactivate',

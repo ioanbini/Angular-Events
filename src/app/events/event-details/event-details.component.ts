@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Params } from "@angular/router";
 import { EventsService } from "../../services/events.service";
 import { Events, iSession } from "../event.model";
 
@@ -19,16 +19,20 @@ export class EventDetailsComponent implements OnInit {
   constructor(private eventService: EventsService, private route: ActivatedRoute) {}
 
   ngOnInit(): void {
-
-    this.getEventWithId(+this.route.snapshot.params['id']);
-    /*this is how you pull parameters of the URL with route.snapshot.params['id'] , takes the current id from the url and navigates the user to corresponding event's detail page*/
+    /*parameters for the route are actually exposed as an observable 
+    this.route.snapshot.params['id] creates a snapshot of the route's param , a fixed copy ,but we are not subscribing to any
+    changes ! So if the 'id' changes we don't know about it !
+    BUT if we want to navigate from this page to itself to a different ID ,then we've got to listen to the route parameter subscription.
+    That's the way we deal with that !
+    */
+    this.route.params.forEach((params:Params) => {
+      this.event=this.eventService.getEventsbyId(+params['id'])
+      this.addMode= false;
+    })
 
   }
 
 
-  getEventWithId(id: number): void {
-    this.event = this.eventService.getEventsbyId(id);
-  }
 
   addSession() {
     this.addMode = true;

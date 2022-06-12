@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ActiveToast, ToastrService } from 'ngx-toastr';
-import { Observable, Subscription } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { EventsService } from '../../services/events.service';
 import { Events } from '../event.model';
 
@@ -9,14 +9,15 @@ import { Events } from '../event.model';
 @Component({
   selector: 'events-list',
   templateUrl: './events-list.component.html',
-  styleUrls: ['./events-list.component.scss']
+  styleUrls: ['./events-list.component.scss'],
+  providers: [ToastrService]
 })
-export class EventsListComponent implements OnInit , OnDestroy {
+export class EventsListComponent implements OnInit, OnDestroy {
 
-  events!: Events[]  ;
+  events!: Events[];
   subscription = new Subscription()
 
-  constructor(private http: EventsService, private toastr: ToastrService,private route:ActivatedRoute) { }
+  constructor(private http: EventsService, private ToastrService: ToastrService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     this.showEvents();
@@ -42,7 +43,7 @@ export class EventsListComponent implements OnInit , OnDestroy {
   }
 
   showToastr(eventName: string): ActiveToast<any> {
-    return this.toastr.success(eventName);
+    return this.ToastrService.success(eventName);
 
   }
 

@@ -1,10 +1,13 @@
+import { VoterService } from './../../../services/voter.service';
+import { UserAuthService } from 'src/app/services';
 import { Component, Input, OnChanges, SimpleChanges } from '@angular/core';
 import { iSession } from '../../event.model';
 
 @Component({
   selector: 'session-list',
   templateUrl: './session-list.component.html',
-  styleUrls: ['./session-list.component.scss']
+  styleUrls: ['./session-list.component.scss'],
+  providers: [VoterService]
 })
 export class SessionListComponent implements OnChanges {
 
@@ -23,7 +26,7 @@ export class SessionListComponent implements OnChanges {
    
    */
 
-  constructor() { }
+  constructor(public auth:UserAuthService ,private voterService: VoterService) { }
 
   //nothing changes until we get the correct action in this implementation clicking into the buttons in the event's details page
   ngOnChanges(changes: SimpleChanges): void {
@@ -31,9 +34,12 @@ export class SessionListComponent implements OnChanges {
     if (this.sessions) {
       // actualy i dont have to pass in the setting because its availabe on the class but it does make the method itself stateless
       this.filterSessions(this.filterBy);
-      // we will also sort our sessions 
-      //sort(): mutating method : it doesnt create a new copy of the array and leaves the original arrary unsorted ! 
-      //it is actually sorts the array in place ,but you have to pass in an comparison function
+
+      /*
+      we will also sort our sessions 
+      sort(): mutating method : it doesnt create a new copy of the array and leaves the original arrary unsorted ! 
+      it is actually sorts the array in place ,but you have to pass in an comparison function */
+      
       this.sortBy === 'name' ? this.visibleSessions.sort
         (sortByNameAsc) : this.visibleSessions.sort(sortByVotesDesc)
 
@@ -57,6 +63,24 @@ export class SessionListComponent implements OnChanges {
       })
 
     }
+  }
+
+  toggleVote(session:iSession) {
+    if(this.userHasVoted(session)) {
+      this.voterService.deleteVoter(session,this.auth.currentUser.userName);
+    } else {
+      this.voterService.addVoter(session,this.auth.currentUser.userName);
+    }
+
+    if(this.sortBy === 'votes') {
+      this.visibleSessions.sort(sortByVotesDesc)
+    }
+
+  }
+
+  userHasVoted(session:iSession):boolean {
+    return !!this.voterService.userHasVoted(session,this.auth.currentUser.userName);
+    
   }
 
 

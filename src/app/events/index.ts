@@ -6,4 +6,5 @@ export * from './events-list/events-list.component'
 export * from '../services/index' //here are all the services imports from the index.ts file of the services folder
 export * from './event-details/create-session/create-session.component'
 export * from './event-details/session-list/session-list.component'
+export * from './event-details/up-vote/up-vote.component'
 

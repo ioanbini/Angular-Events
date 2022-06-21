@@ -23,9 +23,11 @@
       <input (ngModel)="newEvent.price" name="price" required id="eventPrice" type="text" type="number" class="form-control" placeholder="event price..." />
     </div>
 
-<div ngModelGroup="location">
+<div ngModelGroup="location" #locationGroup="ngModelGroup" ValidateLocation>
+  <!--#locationGroup:localRef: Actually angular here takes the ModelGroup location and assign it to this localRef so we can access it-->
   <div class="form-group" >
     <label for="address">Event Location:</label>
+    <em *ngIf="locationGroup?.invalid && locationGroup?.touched">You must enter either the Full location OR an Online Url</em>
     <input (ngModel)="newEvent.location?.address" name="address" id="address" type="text" class="form-control" placeholder="Address of event..." />
   </div>
   <div class="row">
@@ -40,7 +42,11 @@
 
     <div class="form-group">
       <label for="onlineUrl">Online Url:</label>
-      <input (ngModel)="newEvent.onlineUrl" name="onlineUrl" id="onlineUrl" type="text" class="form-control" placeholder="Online Url..." />
+      <input (ngModel)="newEvent.onlineUrl"  name="onlineUrl" id="onlineUrl" type="text" 
+      class="form-control" placeholder="Online Url..." 
+      (change)="locationGroup.control.controls.address.updateValueAndValidity()"/>
+      <!--with the updateValueAndValidity will go up to the address controll and said ok rerun your 
+        validation which will then reevaluate the validation not only for this input field but also in the other one that has the validateLocation directive-->
     </div>
     <div class="form-group" [ngClass]="{'error': newEventForm.controls.imageUrl?.invalid && newEventForm.controls.imageUrl?.touched}">
       <label for="imageUrl">Image:</label>

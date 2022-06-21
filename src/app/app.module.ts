@@ -8,7 +8,7 @@ import { CollapsibleWellComponent, SimpleModalComponent } from '../shared-functi
 import { Error404Component } from './errors/error-page.component';
 import { EventsAppComponent } from './events-app.component';
 import { canDeactivate, CreateEventComponent } from './events/create-event/create-event.component';
-import { SessionListComponent } from './events/event-details/session-list/session-list.component';
+import { SessionListComponent, UpVoteComponent } from './events/index';
 /* Summarizes all the imports , hence we have cleaner code */
 import {
   CreateSessionComponent, EventDetailsComponent,
@@ -16,7 +16,7 @@ import {
 } from './events/index';
 import { NavbarComponent } from './nav/navbar/navbar.component';
 import { routes } from './routes';
-import { ModalTriggerDirective } from './shared/index';
+import { ModalTriggerDirective,LocationValidatorDirective } from './shared/index';
 
 
 
@@ -33,7 +33,9 @@ import { ModalTriggerDirective } from './shared/index';
     SessionListComponent,
     CollapsibleWellComponent,
     SimpleModalComponent,
-    ModalTriggerDirective
+    ModalTriggerDirective,
+    LocationValidatorDirective,
+    UpVoteComponent
 
   ],
   imports: [

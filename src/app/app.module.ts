@@ -1,3 +1,4 @@
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
@@ -16,7 +17,7 @@ import {
 } from './events/index';
 import { NavbarComponent } from './nav/navbar/navbar.component';
 import { routes } from './routes';
-import { ModalTriggerDirective,LocationValidatorDirective } from './shared/index';
+import { LocationValidatorDirective, ModalTriggerDirective } from './shared/index';
 
 
 
@@ -41,6 +42,7 @@ import { ModalTriggerDirective,LocationValidatorDirective } from './shared/index
   imports: [
 
     BrowserModule,
+    HttpClientModule,
     RouterModule.forRoot(routes),
     ToastrModule.forRoot(),
     BrowserAnimationsModule,

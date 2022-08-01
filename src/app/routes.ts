@@ -1,9 +1,9 @@
+import { EventResolverService } from './services/event-resolver.service';
 import { Routes } from '@angular/router';
 import {
   EventsListComponent,
   CreateEventComponent,
   EventDetailsComponent,
-  EventRouteActivatorService,
   EventsListResolverService,
   CreateSessionComponent
 
@@ -19,7 +19,7 @@ export const routes :Routes  = [
   { path: 'events/create', component: CreateEventComponent, canDeactivate: ['canDeactivate'] },
   /* canDeactivate prevent the user from leaving a page , here we are using a function (its implemented in create-event.ts) */
   { path: '404',component:Error404Component},
-  { path: 'events/:id', component: EventDetailsComponent, canActivate: [EventRouteActivatorService] },
+  { path: 'events/:id', component: EventDetailsComponent,resolve: {event: EventResolverService}  },
   /*for can Activate we can use a function or a service , here we are using service , because it gives us flexibillity and the ability to inject other services */
   { path: '', redirectTo: '/events', pathMatch: 'full' } ,// if the path is empty or the user is in the root of our site
   //redirect to /events and the path is full , wich means absolute path with only events keyword

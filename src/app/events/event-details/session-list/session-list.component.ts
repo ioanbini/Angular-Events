@@ -17,6 +17,8 @@ export class SessionListComponent implements OnChanges {
 
   @Input() sortBy!: string;
 
+  @Input() eventId!:any;
+
   visibleSessions: iSession[] = [];
 
   /*so now we are passing the value filterBy to this component , but we also need to take action on that value
@@ -67,9 +69,9 @@ export class SessionListComponent implements OnChanges {
 
   toggleVote(session:iSession) {
     if(this.userHasVoted(session)) {
-      this.voterService.deleteVoter(session,this.auth.currentUser.userName);
+      this.voterService.deleteVoter(session,this.eventId,this.auth.currentUser.userName);
     } else {
-      this.voterService.addVoter(session,this.auth.currentUser.userName);
+      this.voterService.addVoter(session,this.eventId,this.auth.currentUser.userName);
     }
 
     if(this.sortBy === 'votes') {

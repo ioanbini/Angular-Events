@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { ActivatedRoute, Params } from "@angular/router";
+import { ActivatedRoute, Data } from "@angular/router";
 import { EventsService } from "../../services/events.service";
 import { Events, iSession } from "../event.model";
 
@@ -10,13 +10,13 @@ import { Events, iSession } from "../event.model";
   styleUrls: ['./event-details.component.scss']
 })
 export class EventDetailsComponent implements OnInit {
-  event: Events | undefined;
+  event!: Events ;
   addMode!: boolean;
   filterBy: string = 'all';
-  sortBy:string = 'votes'
+  sortBy: string = 'votes'
 
 
-  constructor(private eventService: EventsService, private route: ActivatedRoute) {}
+  constructor(private eventService: EventsService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
     /*parameters for the route are actually exposed as an observable 
@@ -25,9 +25,17 @@ export class EventDetailsComponent implements OnInit {
     BUT if we want to navigate from this page to itself to a different ID ,then we've got to listen to the route parameter subscription.
     That's the way we deal with that !
     */
-    this.route.params.forEach((params:Params) => {
+
+    //OLD IMPLEMENTATION
+    /*this.route.params.forEach((params:Params) => {
       this.event=this.eventService.getEventsbyId(+params['id'])
       this.addMode= false;
+      */
+
+
+    this.route.data.forEach((data:Data) => {
+      this.event = data['event']
+      this.addMode = false;
     })
 
   }
@@ -39,14 +47,37 @@ export class EventDetailsComponent implements OnInit {
 
   }
 
+  //OLD IMPLEMENTATION
+
   /**saveNewSession : Adds new Session to the corresponding event and then updates it */
 
-  saveNewSession(session: iSession) {
-    /**Because on our create Session form we don't define a session id , so the session id  will be undefined, therefore we need to assing a new session id when
-     * it comes in. So we will get the max session ID off of  the sessions on the event and then increament it and assign that to our session ID
-    */
+  // saveNewSession(session: iSession) {
+  //   /**Because on our create Session form we don't define a session id , so the session id  will be undefined, therefore we need to assing a new session id when
+  //    * it comes in. So we will get the max session ID off of  the sessions on the event and then increament it and assign that to our session ID
+  //   */
 
 
+  //   const nextId = Math.max.apply(null, this.event?.sessions?.map(session => session.id) as unknown as number[]);
+  //   /**that should return as the maximum session ID */
+
+  //   /** then we will just set the ID on our new Session and increment it by one */
+  //   session.id = nextId + 1;
+
+  //   /** after we increment the id by 1 we will push the new session to the sessions array */
+  //   this.event?.sessions.push(session)
+
+  //   /** now we have to call update event on our eventService to save this event */
+  //   this.eventService.updateEvent(this.event as Events);
+  //   /** as a final step we will display again the sessions list */
+  //   this.addMode = false;
+
+  // }
+
+  cancelAddSession() {
+    this.addMode = false;
+  }
+
+  saveNewSession(session:iSession) {
     const nextId = Math.max.apply(null, this.event?.sessions?.map(session => session.id) as unknown as number[]);
     /**that should return as the maximum session ID */
 
@@ -54,17 +85,16 @@ export class EventDetailsComponent implements OnInit {
     session.id = nextId + 1;
 
     /** after we increment the id by 1 we will push the new session to the sessions array */
-    this.event?.sessions.push(session)
+    this.event?.sessions?.push(session)
 
     /** now we have to call update event on our eventService to save this event */
-    this.eventService.updateEvent(this.event as Events);
-    /** as a final step we will display again the sessions list */
-    this.addMode = false;
-
-  }
-
-  cancelAddSession() {
-    this.addMode = false;
+    this.eventService.updateEvent(this.event,this.event?.id).subscribe({
+      next:() => {
+        console.log(this.event)
+         /** as a final step we will display again the sessions list */
+        this.addMode = false;
+      }
+    });
   }
 
 }

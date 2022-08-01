@@ -1,18 +1,22 @@
 import { Injectable } from '@angular/core';
-import {Resolve } from '@angular/router';
+import { Resolve } from '@angular/router';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 import { EventsService } from './events.service';
-
 
 @Injectable({
   providedIn: 'root'
 })
 export class EventsListResolverService implements Resolve<any> {
-
+  //A resolver automatically subscribes to an observable call that it gets.
+  //Angular has a build in functionallity that in a resolver any observable that it gets it will subscribe to itself 
+  //therefore here we do not have to make a subscribe call 
+  //in every other case we had to subscribe to the observable otherwise the observable will never make the call 
+  // until somebody subscribes to that observable 
   constructor(private eventsService:EventsService) { }
   resolve():Observable<any> {
-    return this.eventsService.getEvents().pipe(map(events => events))
+    return this.eventsService.getEvents();
+    //old implementation
+    // return this.eventsService.getEvents().pipe(map(events => events))
     //we are calling map on the observable which gives as access to the events that are passed in on that stream  and then we are just return those events
     //Because this is in a resolver here the subcription is not needed because we need to return the observable to angular so that angular can watch the
     //observable and see when it finishes if we called subscribe here the value that we return will not be the observable because subscribe returns a subscription

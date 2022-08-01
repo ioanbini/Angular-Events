@@ -17,9 +17,9 @@
             Events
             <span class="caret"></span>
           </a>
-          <ul class="dropdown-menu">
-            <li >
-              <a href="">Angular Connect</a>
+          <ul  class="dropdown-menu">
+            <li *ngFor="let event of availableEvents" >
+              <a [routerLink]="['/events/'+event?.id]" >{{event?.name}}</a>
             </li>
           </ul>
         </li>
@@ -36,7 +36,7 @@
         <div class="form-group">
           <input [(ngModel)]="searchTerm" name="searchTerm" type="text" class="form-control" placeholder="Search Sessions" >
         </div>
-        <button class="btn btn-default" ModalTrigger="foundSessions" >
+        <button class="btn btn-default" data-toggle="modal" ModalTrigger="foundSessions">
           Search
         </button>
       </form>
@@ -47,7 +47,7 @@
 <simple-modal elementId="foundSessions"  title="Matching Sessions">
   <div class="list-group">
     <!-- leading slash / no matter where we are at its going to go to the root of our website /events/eventId -->
-    <a class="list-group-item" *ngFor="let session of foundSessions" [routerLink]="['/events',session.eventId]">
+    <a class="list-group-item" *ngFor="let session of foundSessions" [routerLink]="['/events',session?.id]">
       {{session.name}}
     </a>
   </div>

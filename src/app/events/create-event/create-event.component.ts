@@ -23,10 +23,13 @@ export class CreateEventComponent implements OnInit {
 
   saveEvent(formValue: Events) {
 
-    this.eventService.saveEvent(formValue)
-    this.navigateAway = true;
-    this.router.navigate(['/events'])
-    console.log(formValue)
+    this.eventService.saveEvent(formValue).subscribe({
+      next:() => {
+        this.navigateAway = true;
+        this.router.navigate(['/events'])
+      }
+    })
+    
   }
 
   cancel(formInstance: NgForm) {

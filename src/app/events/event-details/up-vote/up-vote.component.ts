@@ -15,6 +15,8 @@ export class UpVoteComponent implements OnInit {
     this.iconColor=value ?'red' :'white';
   };
 
+  
+
   constructor() { }
 
   ngOnInit(): void {

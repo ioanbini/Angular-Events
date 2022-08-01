@@ -3,8 +3,9 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "ng serve -o --proxy-config ./src/proxy.config.json",
     "build": "ng build",
+    "server": "node node_modules/ngf-server/server.js",
     "watch": "ng build --watch --configuration development",
     "test": "ng test"
   },
@@ -21,13 +22,14 @@
     "bootstrap": "^4.6.1",
     "jquery": "^3.6.0",
     "ngf-bootstrap": "0.0.5",
+    "ngf-server": "^1.0.3",
     "ngx-toastr": "^14.1.4",
     "rxjs": "~6.6.0",
     "tslib": "^2.1.0",
     "zone.js": "~0.11.4"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "~12.0.0",
+    "@angular-devkit/build-angular": "^12.2.18",
     "@angular/cli": "~12.0.0",
     "@angular/compiler-cli": "~12.0.0",
     "@schematics/angular": "^13.3.1",

@@ -1,3 +1,4 @@
+import { HttpClientModule } from '@angular/common/http';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
@@ -12,11 +13,11 @@ import { SessionListComponent, UpVoteComponent } from './events/index';
 /* Summarizes all the imports , hence we have cleaner code */
 import {
   CreateSessionComponent, EventDetailsComponent,
-  EventRouteActivatorService, EventsListComponent, EventsListResolverService, EventsService, EventThumbnailComponent, UserAuthService
+  EventResolverService, EventsListComponent, EventsListResolverService, EventsService, EventThumbnailComponent, UserAuthService
 } from './events/index';
 import { NavbarComponent } from './nav/navbar/navbar.component';
 import { routes } from './routes';
-import { ModalTriggerDirective,LocationValidatorDirective } from './shared/index';
+import { LocationValidatorDirective, ModalTriggerDirective } from './shared/index';
 
 
 
@@ -41,6 +42,7 @@ import { ModalTriggerDirective,LocationValidatorDirective } from './shared/index
   imports: [
 
     BrowserModule,
+    HttpClientModule,
     RouterModule.forRoot(routes),
     ToastrModule.forRoot(),
     BrowserAnimationsModule,
@@ -54,7 +56,7 @@ import { ModalTriggerDirective,LocationValidatorDirective } from './shared/index
     UserAuthService,
     EventsListResolverService,
     //sorthand for { provide:EventsListResolverService , useClass:EventsListResolverService}
-    EventRouteActivatorService,
+    EventResolverService,
     {
       provide: 'canDeactivate',
       useValue: canDeactivate

@@ -12,19 +12,20 @@ export class VoterService {
   constructor(private http: HttpClient) { }
 
   deleteVoter(session: iSession, eventId: number, voterName: string) {
+    session.voters = session.voters.filter((voter) => {
+      voter !== voterName
+    })
 
     const url = `/api/events/${eventId}/sessions/${session.id}/voters/${voterName}`
     this.http.delete(url)
     .pipe(catchError(this.handleError('deleteVoter', {})))
     .subscribe();
-    // session.voters = session.voters.filter((voter) => {
-    //   voter !== voterName
-    // })
 
   }
 
 
   addVoter(session: iSession, eventId: number, voterName: string): void {
+    session.voters.push(voterName)
     const url = `/api/events/${eventId}/sessions/${session.id}/voters/${voterName}`
     const options = { headers: new HttpHeaders({ 'Content-Type': '/application/json' }) }
     this.http.post(url, {}, options)
